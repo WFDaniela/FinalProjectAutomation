@@ -1,5 +1,6 @@
 package Tests;
 
+import HelpMethods.ElementMethods;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,46 +12,46 @@ public class WishlistRemoveProductTest extends ShareData {
 
 
     @Test
-    public void metodaTest() {
+    public void removeFromWishlist() {
 
-        WebElement connect = driver.findElement(By.className("link-border"));
-        connect.click();
+        ElementMethods elementMethods= new ElementMethods(getDriver());
 
-        WebElement email = driver.findElement(By.id("username"));
+        WebElement connect = getDriver().findElement(By.className("link-border"));
+        elementMethods.clickElement(connect);
+
+        WebElement email = getDriver().findElement(By.id("username"));
         String emailValue = "laurentiu.solomon@btrl.ro";
-        email.sendKeys(emailValue);
+        elementMethods.fillElement(email, emailValue);
 
-        WebElement password = driver.findElement(By.id("password"));
+        WebElement password = getDriver().findElement(By.id("password"));
         String passwordValue = "Solanj78";
-        password.sendKeys(passwordValue);
+        elementMethods.fillElement(password, passwordValue);
 
-        WebElement login = driver.findElement(By.className("submit-button"));
-        login.click();
+        WebElement login = getDriver().findElement(By.className("submit-button"));
+        elementMethods.clickElement(login);
 
-        WebElement menu = driver.findElement(By.className("icon-settings"));
-        menu.click();
+        WebElement menu = getDriver().findElement(By.className("icon-settings"));
+        elementMethods.clickElement(menu);
 
-        WebElement profile = driver.findElement(By.cssSelector("ul>li>a"));
-        profile.click();
+        WebElement profile = getDriver().findElement(By.cssSelector("ul>li>a"));
+        elementMethods.clickElement(profile);
 
-        WebElement wishlist = driver.findElement(By.xpath("//div[text()='Wishlist']"));
-        wishlist.click();
+        WebElement wishlist = getDriver().findElement(By.xpath("//div[text()='Wishlist']"));
+        elementMethods.clickElement(wishlist);
 
 
-        WebElement book = driver.findElement(By.xpath("//div[@class='cover']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(book).perform();
+        WebElement book =getDriver().findElement(By.xpath("//div[@class='cover']"));
+        elementMethods.moveToElement(book);
 
-        WebElement dropdown = driver.findElement(By.xpath("(//div[@class='menu-icon dropdown-toggle'])[1]"));
-        dropdown.click();
+        WebElement dropdown = getDriver().findElement(By.xpath("(//div[@class='menu-icon dropdown-toggle'])[1]"));
+        elementMethods.clickElement(dropdown);
 
-        WebElement removeFromWishlist = driver.findElement(By.xpath("(//a[@class='ng-binding ng-scope'])"));
-        removeFromWishlist.click();
+        WebElement removeFromWishlist = getDriver().findElement(By.xpath("(//a[@class='ng-binding ng-scope'])"));
+        elementMethods.clickElement(removeFromWishlist);
 
-        WebElement validateMessage = driver.findElement(By.xpath("//div[@class='message-empty col-xs-12 ng-binding ng-scope']"));
+        WebElement validateMessage = getDriver().findElement(By.xpath("//div[@class='message-empty col-xs-12 ng-binding ng-scope']"));
         String expectedMessage = "Nu ai niciun material în wishlist";
-        String actualMessage = validateMessage.getText();
-        Assert.assertEquals(expectedMessage, actualMessage);
+        elementMethods.validateMessage(validateMessage, expectedMessage);
 
     }
 }

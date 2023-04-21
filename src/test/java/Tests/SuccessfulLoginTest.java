@@ -1,5 +1,6 @@
 package Tests;
 
+import HelpMethods.ElementMethods;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,20 +10,22 @@ public class SuccessfulLoginTest extends ShareData {
 
 
     @Test
-    public void metodaTest() {
+    public void loginSuccessful() {
 
-        WebElement connect = driver.findElement(By.className("link-border"));
-        connect.click();
+        ElementMethods elementMethods = new ElementMethods(getDriver());
 
-        WebElement email = driver.findElement(By.id("username"));
+        WebElement connect = getDriver().findElement(By.className("link-border"));
+        elementMethods.clickElement(connect);
+
+        WebElement email = getDriver().findElement(By.id("username"));
         String emailValue = "laurentiu.solomon@btrl.ro";
-        email.sendKeys(emailValue);
+        elementMethods.fillElement(email, emailValue);
 
-        WebElement password = driver.findElement(By.id("password"));
+        WebElement password = getDriver().findElement(By.id("password"));
         String passwordValue = "Solanj78";
-        password.sendKeys(passwordValue);
+        elementMethods.fillElement(password, passwordValue);
 
-        WebElement login = driver.findElement(By.className("submit-button"));
-        login.click();
+        WebElement login = getDriver().findElement(By.className("submit-button"));
+        elementMethods.clickElement(login);
     }
 }

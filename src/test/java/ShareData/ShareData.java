@@ -9,9 +9,14 @@ import java.time.Duration;
 
 public class ShareData {
 
-    public WebDriver driver;
+    private WebDriver driver;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     @BeforeMethod
-    public void Setup(){
+    public void Setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -19,6 +24,7 @@ public class ShareData {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
     }
+
 
     @AfterMethod
     public void Clear(){

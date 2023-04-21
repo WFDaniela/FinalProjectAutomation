@@ -1,5 +1,6 @@
 package Tests;
 
+import HelpMethods.ElementMethods;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,55 +10,56 @@ import org.testng.annotations.Test;
 
 public class BorrowCanceled extends ShareData {
     @Test
-    public void metodaTest() {
+    public void borrowCanceled() {
 
-        WebElement connect = driver.findElement(By.className("link-border"));
-        connect.click();
+        ElementMethods elementMethods = new ElementMethods(getDriver());
 
-        WebElement email = driver.findElement(By.id("username"));
+        WebElement connect = getDriver().findElement(By.className("link-border"));
+        elementMethods.clickElement(connect);
+
+        WebElement email = getDriver().findElement(By.id("username"));
         String emailValue = "laurentiu.solomon@btrl.ro";
-        email.sendKeys(emailValue);
+        elementMethods.fillElement(email, emailValue);
 
-        WebElement password = driver.findElement(By.id("password"));
+        WebElement password = getDriver().findElement(By.id("password"));
         String passwordValue = "Solanj78";
-        password.sendKeys(passwordValue);
+        elementMethods.fillElement(password, passwordValue);
 
-        WebElement login = driver.findElement(By.className("submit-button"));
-        login.click();
+        WebElement login = getDriver().findElement(By.className("submit-button"));
+        elementMethods.clickElement(login);
 
-        WebElement menu = driver.findElement(By.className("icon-settings"));
-        menu.click();
+        WebElement menu = getDriver().findElement(By.className("icon-settings"));
+        elementMethods.clickElement(menu);
 
-        WebElement profile = driver.findElement(By.cssSelector("ul>li>a"));
-        profile.click();
+        WebElement profile = getDriver().findElement(By.cssSelector("ul>li>a"));
+        elementMethods.clickElement(profile);
 
-        WebElement borrowedBook = driver.findElement(By.xpath("//a[@ng-href='https://www.bookster.ro/books/cand-corpul-spune-nu/']"));
+        WebElement borrowedBook = getDriver().findElement(By.xpath("//a[@ng-href='https://www.bookster.ro/books/cand-corpul-spune-nu/']"));
 
-        WebElement cancel = driver.findElement(By.xpath("//a[text()='Anulează']"));
-        cancel.click();
+        WebElement cancel = getDriver().findElement(By.xpath("//a[text()='Anulează']"));
+        elementMethods.clickElement(cancel);
 
-        WebElement cancelWindow = driver.findElement(By.xpath("//div[@class='inmodal ng-scope']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(cancelWindow).perform();
+        WebElement cancelWindow = getDriver().findElement(By.xpath("//div[@class='inmodal ng-scope']"));
+        elementMethods.moveToElement(cancelWindow);
 
-        WebElement validateTitle= driver.findElement(By.xpath("//h3[text()='Cand corpul spune nu']"));
+        WebElement validateTitle= getDriver().findElement(By.xpath("//h3[text()='Cand corpul spune nu']"));
         String expectedTitle = "Cand corpul spune nu";
-        String actualTitle= validateTitle.getText();
-        Assert.assertEquals(expectedTitle, actualTitle);
+        elementMethods.validateMessage(validateTitle, expectedTitle);
 
-        WebElement validateAuthor= driver.findElement(By.xpath("//h5[text()='carte de Gabor Mate']"));
+        WebElement validateAuthor= getDriver().findElement(By.xpath("//h5[text()='carte de Gabor Mate']"));
         String expectedAuthor = "carte de Gabor Mate";
-        String actualAuthor= validateAuthor.getText();
-        Assert.assertEquals(expectedAuthor, actualAuthor);
+        elementMethods.validateMessage(validateAuthor, expectedAuthor);
 
-        WebElement confirmMessage = driver.findElement(By.xpath("//p[text()='Ești sigur că vrei să anulezi acest împrumut?']"));
+        WebElement confirmMessage = getDriver().findElement(By.xpath("//p[text()='Ești sigur că vrei să anulezi acest împrumut?']"));
         String expectedConfirmMessage = "Ești sigur că vrei să anulezi acest împrumut?";
-        String actualConfirmMessage = confirmMessage.getText();
-        Assert.assertEquals(expectedConfirmMessage, actualConfirmMessage);
+        elementMethods.validateMessage(confirmMessage, expectedConfirmMessage);
 
-        WebElement borrowedCancel = driver.findElement(By.xpath("//button[contains(text(),'Anulează împrumutul')]"));
-        borrowedCancel.click();
+        WebElement borrowedCancel = getDriver().findElement(By.xpath("//button[contains(text(),'Anulează împrumutul')]"));
+        elementMethods.clickElement(borrowedCancel);
 
+        WebElement cancelConfirm = getDriver().findElement(By.xpath("//div[contains(text(),'Nu ai niciun material în drum spre tine')]"));
+        String expectedCancelConfirm = "Nu ai niciun material în drum spre tine";
+        elementMethods.validateMessage(cancelConfirm, expectedCancelConfirm);
 
     }
 }

@@ -1,5 +1,6 @@
 package Tests;
 
+import HelpMethods.ElementMethods;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,49 +12,47 @@ public class BookBorrow extends ShareData {
 
 
     @Test
-    public void metodaTest() {
+    public void bookBorrow() {
+        ElementMethods elementMethods = new ElementMethods(getDriver());
 
-        WebElement connect = driver.findElement(By.className("link-border"));
-        connect.click();
+        WebElement connect = getDriver().findElement(By.className("link-border"));
+        elementMethods.clickElement(connect);
 
-        WebElement email = driver.findElement(By.id("username"));
+        WebElement email = getDriver().findElement(By.id("username"));
         String emailValue = "laurentiu.solomon@btrl.ro";
-        email.sendKeys(emailValue);
+        elementMethods.fillElement(email,emailValue);
 
-        WebElement password = driver.findElement(By.id("password"));
+        WebElement password = getDriver().findElement(By.id("password"));
         String passwordValue = "Solanj78";
-        password.sendKeys(passwordValue);
+        elementMethods.fillElement(password, passwordValue);
 
-        WebElement login = driver.findElement(By.className("submit-button"));
-        login.click();
+        WebElement login = getDriver().findElement(By.className("submit-button"));
+        elementMethods.clickElement(login);
 
-        WebElement searchField = driver.findElement(By.xpath("//input[@placeholder='Caută următoarea ta lectură...']"));
-        searchField.click();
+        WebElement searchField = getDriver().findElement(By.xpath("//input[@placeholder='Caută următoarea ta lectură...']"));
+        elementMethods.clickElement(searchField);
         String textValue = "Cand corpul spune nu";
-        searchField.sendKeys(textValue);
+        elementMethods.fillElement(searchField, textValue);
 
-        WebElement selectBook = driver.findElement(By.xpath("//a[@ng-href='https://www.bookster.ro/books/cand-corpul-spune-nu/']//span[@class='result-title ng-binding']"));
-        selectBook.click();
+        WebElement selectBook = getDriver().findElement(By.xpath("//a[@ng-href='https://www.bookster.ro/books/cand-corpul-spune-nu/']//span[@class='result-title ng-binding']"));
+        elementMethods.clickElement(selectBook);
 
-        WebElement borrow = driver.findElement(By.xpath("//button[contains(text(),'Împrumută')]"));
-        borrow.click();
+        WebElement borrow = getDriver().findElement(By.xpath("//button[contains(text(),'Împrumută')]"));
+        elementMethods.clickElement(borrow);
 
-        WebElement borrowWindow = driver.findElement(By.xpath("//div[@class='inmodal borrow-popup ng-scope']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(borrowWindow).perform();
+        WebElement borrowWindow = getDriver().findElement(By.xpath("//div[@class='inmodal borrow-popup ng-scope']"));
+        elementMethods.moveToElement(borrowWindow);
 
-        WebElement validateTitle= driver.findElement(By.xpath("//h3[text()='Cand corpul spune nu']"));
+        WebElement validateTitle= getDriver().findElement(By.xpath("//h3[text()='Cand corpul spune nu']"));
         String expectedTitle = "Cand corpul spune nu";
-        String actualTitle= validateTitle.getText();
-        Assert.assertEquals(expectedTitle, actualTitle);
+        elementMethods.validateMessage(validateTitle, expectedTitle);
 
-        WebElement validateAuthor= driver.findElement(By.xpath("//h5[text()='carte de Gabor Mate']"));
+        WebElement validateAuthor= getDriver().findElement(By.xpath("//h5[text()='carte de Gabor Mate']"));
         String expectedAuthor = "carte de Gabor Mate";
-        String actualAuthor= validateAuthor.getText();
-        Assert.assertEquals(expectedAuthor, actualAuthor);
+        elementMethods.validateMessage(validateAuthor, expectedAuthor);
 
-        WebElement borrowButton = driver.findElement(By.xpath("//button[text()='                                Împrumută în Română                            ']"));
-        borrowButton.click();
+        WebElement borrowButton = getDriver().findElement(By.xpath("//button[text()='                                Împrumută în Română                            ']"));
+        elementMethods.clickElement(borrowButton);
 
 
     }
