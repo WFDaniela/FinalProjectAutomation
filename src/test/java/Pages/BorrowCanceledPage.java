@@ -1,5 +1,6 @@
 package Pages;
 
+import Objects.BorrowCanceledObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,30 +39,29 @@ public class BorrowCanceledPage extends BasePage {
     @FindBy(xpath = "//h5[text()='carte de Gabor Mate']")
     private WebElement validateAuthor;
 
-    @FindBy(xpath = "//p[text()='Ești sigur că vrei să anulezi acest împrumut?']")
+    @FindBy(xpath = "//p[@class='popup-text ng-binding']")
     private WebElement confirmMessage;
 
-    @FindBy(xpath = "//button[contains(text(),'Anulează împrumutul')]")
+    @FindBy(xpath = " //button[contains(text(),'Anulează împrumutul')]")
     private WebElement borrowedCancel;
 
     @FindBy(xpath = "//div[contains(text(),'Nu ai niciun material în drum spre tine')]")
     private WebElement cancelConfirm;
 
-    public void cancelBookBorrow(String emailValue, String passwordValue, String expectedTitle, String expectedAuthor, String expectedConfirmMessage, String expectedCancelConfirm){
+    public void cancelBookBorrow(BorrowCanceledObject borrowCanceledObject){
 
-        elementMethods.fillElement(email, emailValue);
-        elementMethods.fillElement(password, passwordValue);
+        elementMethods.fillElement(email, borrowCanceledObject.getEmail());
+        elementMethods.fillElement(password, borrowCanceledObject.getPassword());
         elementMethods.clickElement(login);
         elementMethods.clickElement(menu);
         elementMethods.clickElement(profile);
         elementMethods.moveToElement(borrowedBook);
         elementMethods.clickElement(cancel);
         elementMethods.moveToElement(cancelWindow);
-        elementMethods.validateMessage(validateTitle, expectedTitle);
-        elementMethods.validateMessage(validateAuthor, expectedAuthor);
-        elementMethods.validateMessage(confirmMessage, expectedConfirmMessage);
+        elementMethods.validateMessage(validateTitle, borrowCanceledObject.getTitle());
+        elementMethods.validateMessage(validateAuthor, borrowCanceledObject.getAuthor());
         elementMethods.clickElement(borrowedCancel);
-        elementMethods.validateMessage(cancelConfirm, expectedCancelConfirm);
+        elementMethods.validateMessage(cancelConfirm, borrowCanceledObject.getCancelConfirm());
 
     }
 

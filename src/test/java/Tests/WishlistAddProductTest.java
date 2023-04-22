@@ -1,22 +1,23 @@
 package Tests;
 
+import Objects.WishlistAddProductObject;
 import Pages.AddToWishlistPage;
 import Pages.IndexPage;
-import ShareData.ShareData;
+
+import ShareData.Hooks;
 import org.testng.annotations.Test;
 
-public class WishlistAddProductTest extends ShareData {
+public class WishlistAddProductTest extends Hooks {
 
     @Test
     public void addToWishlist(){
+        WishlistAddProductObject wishlistAddProductObject = new WishlistAddProductObject(TestData);
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
 
         AddToWishlistPage addToWishlistPage = new AddToWishlistPage(getDriver());
-        addToWishlistPage.addBookToWishlist("laurentiu.solomon@btrl.ro", "Solanj78");
+        addToWishlistPage.addBookToWishlist(wishlistAddProductObject);
 
-        String emailValue = "laurentiu.solomon@btrl.ro";
-        String passwordValue = "Solanj78";
 
     }
 }

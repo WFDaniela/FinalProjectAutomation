@@ -1,5 +1,6 @@
 package Pages;
 
+import Objects.SuccessfulLoginObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,10 +19,10 @@ public class SuccessfulLoginPage extends BasePage {
         super(driver);
     }
 
-    public void loginValid(String emailValue, String passwordValue){
+    public void loginValid(SuccessfulLoginObject successfullLoginObject){
 
-        elementMethods.fillElement(email, emailValue);
-        elementMethods.fillElement(password, passwordValue);
+        elementMethods.fillElement(email, successfullLoginObject.getEmail());
+        elementMethods.fillElement(password, successfullLoginObject.getPassword());
         elementMethods.clickElement(login);
     }
 

@@ -1,5 +1,6 @@
 package Pages;
 
+import Objects.BookBorrowObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,18 +39,18 @@ public class BookBorrowPage extends BasePage{
     @FindBy(xpath = "//button[text()='                                Împrumută în Română                            ']")
     private WebElement borrowButton;
 
-    public void borrowBook(String emailValue, String passwordValue, String textValue, String expectedTitle, String expectedAuthor){
+    public void borrowBook(BookBorrowObject bookBorrowObject){
 
-        elementMethods.fillElement(email,emailValue);
-        elementMethods.fillElement(password, passwordValue);
+        elementMethods.fillElement(email,bookBorrowObject.getEmail());
+        elementMethods.fillElement(password, bookBorrowObject.getPassword());
         elementMethods.clickElement(login);
         elementMethods.clickElement(searchField);
-        elementMethods.fillElement(searchField, textValue);
+        elementMethods.fillElement(searchField, bookBorrowObject.getText());
         elementMethods.clickElement(selectBook);
         elementMethods.clickElement(borrow);
         elementMethods.moveToElement(borrowWindow);
-        elementMethods.validateMessage(validateTitle, expectedTitle);
-        elementMethods.validateMessage(validateAuthor, expectedAuthor);
+        elementMethods.validateMessage(validateTitle, bookBorrowObject.getTitle());
+        elementMethods.validateMessage(validateAuthor, bookBorrowObject.getAuthor());
         elementMethods.clickElement(borrowButton);
     }
 }

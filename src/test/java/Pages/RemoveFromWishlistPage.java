@@ -1,5 +1,6 @@
 package Pages;
 
+import Objects.WishlistRemoveProductObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,10 +41,10 @@ public class RemoveFromWishlistPage extends BasePage{
     @FindBy(xpath = "//div[@class='message-empty col-xs-12 ng-binding ng-scope']")
     private WebElement validateMessage;
 
-    public void removeBookFromWishlist(String emailValue, String passwordValue, String expectedMessage){
+    public void removeBookFromWishlist(WishlistRemoveProductObject wishlistRemoveProductObject){
 
-        elementMethods.fillElement(email, emailValue);
-        elementMethods.fillElement(password, passwordValue);
+        elementMethods.fillElement(email, wishlistRemoveProductObject.getEmail());
+        elementMethods.fillElement(password, wishlistRemoveProductObject.getPassword());
         elementMethods.clickElement(login);
         elementMethods.clickElement(menu);
         elementMethods.clickElement(profile);
@@ -51,7 +52,7 @@ public class RemoveFromWishlistPage extends BasePage{
         elementMethods.moveToElement(book);
         elementMethods.clickElement(dropdown);
         elementMethods.clickElement(removeFromWishlist);
-        elementMethods.validateMessage(validateMessage, expectedMessage);
+        elementMethods.validateMessage(validateMessage, wishlistRemoveProductObject.getMessage());
 
 
     }

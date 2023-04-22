@@ -1,6 +1,7 @@
 package Pages;
 
 import HelpMethods.ElementMethods;
+import Objects.UnsuccessfulLoginObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,11 +25,11 @@ public class UnsuccessfullLoginPage extends BasePage {
         super(driver);
     }
 
-    public void loginFailed(String emailValue, String passwordValue, String expectedError){
-        elementMethods.fillElement(email, emailValue);
-        elementMethods.fillElement(password, passwordValue);
+    public void loginFailed(UnsuccessfulLoginObject unsuccessfulLoginObject){
+        elementMethods.fillElement(email, unsuccessfulLoginObject.getEmail());
+        elementMethods.fillElement(password, unsuccessfulLoginObject.getPassword());
         elementMethods.clickElement(login);
-        elementMethods.validateMessage(error, expectedError);
+        elementMethods.validateMessage(error, unsuccessfulLoginObject.getError());
     }
 
 }

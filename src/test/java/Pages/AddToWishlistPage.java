@@ -1,5 +1,6 @@
 package Pages;
 
+import Objects.WishlistAddProductObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,10 +34,10 @@ public class AddToWishlistPage extends  BasePage{
     @FindBy(xpath = "//a[text()='Wishlist']")
     private WebElement addToWishlist;
 
-    public void addBookToWishlist(String emailValue, String passwordValue){
+    public void addBookToWishlist(WishlistAddProductObject wishlistAddProductObject){
 
-        elementMethods.fillElement(email,emailValue);
-        elementMethods.fillElement(password, passwordValue);
+        elementMethods.fillElement(email,wishlistAddProductObject.getEmail());
+        elementMethods.fillElement(password, wishlistAddProductObject.getPassword());
         elementMethods.clickElement(login);
         elementMethods.clickElement(explore);
         elementMethods.clickElement(category);

@@ -1,24 +1,25 @@
 package Tests;
 
+import Objects.WishlistRemoveProductObject;
 import Pages.IndexPage;
 import Pages.RemoveFromWishlistPage;
-import ShareData.ShareData;
+
+import ShareData.Hooks;
 import org.testng.annotations.Test;
 
-public class WishlistRemoveProductTest extends ShareData {
+public class WishlistRemoveProductTest extends Hooks {
 
 
     @Test
     public void removeFromWishlist() {
+        WishlistRemoveProductObject wishlistRemoveProductObject = new WishlistRemoveProductObject(TestData);
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
 
         RemoveFromWishlistPage removeFromWishlistPage = new RemoveFromWishlistPage(getDriver());
-        removeFromWishlistPage.removeBookFromWishlist("laurentiu.solomon@btrl.ro", "Solanj78", "Nu ai niciun material în wishlist");
+        removeFromWishlistPage.removeBookFromWishlist(wishlistRemoveProductObject);
 
-        String emailValue = "laurentiu.solomon@btrl.ro";
-        String passwordValue = "Solanj78";
-        String expectedMessage = "Nu ai niciun material în wishlist";
+
     }
 
 }

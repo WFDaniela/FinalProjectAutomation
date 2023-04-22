@@ -15,7 +15,7 @@ public class ShareData {
         return driver;
     }
 
-    @BeforeMethod
+
     public void Setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
@@ -27,8 +27,6 @@ public class ShareData {
 
 
 
-
-    @AfterMethod
     public void Clear(){
         driver.quit();
     }
