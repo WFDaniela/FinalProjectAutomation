@@ -19,6 +19,9 @@ public class UnsuccessfullLoginTest extends ShareData {
         UnsuccessfullLoginPage unsuccessfullLoginPage = new UnsuccessfullLoginPage(getDriver());
         unsuccessfullLoginPage.loginFailed("daniela.solo@email.ro", "Daniela81","Email sau parola incorecte!" );
 
+        String emailValue = "daniela.solo@email.ro";
+        String passwordValue = "Daniela81";
+        String expectedError = "Email sau parola incorecte!";
 
 
     }

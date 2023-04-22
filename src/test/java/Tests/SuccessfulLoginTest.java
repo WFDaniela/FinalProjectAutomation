@@ -17,6 +17,7 @@ public class SuccessfulLoginTest extends ShareData {
         SuccessfulLoginPage successfulLoginPage = new SuccessfulLoginPage(getDriver());
         successfulLoginPage.loginValid("laurentiu.solomon@btrl.ro", "Solanj78");
 
-
+        String emailValue = "laurentiu.solomon@btrl.ro";
+        String passwordValue = "Solanj78";
     }
 }

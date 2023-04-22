@@ -15,5 +15,8 @@ public class WishlistAddProductTest extends ShareData {
         AddToWishlistPage addToWishlistPage = new AddToWishlistPage(getDriver());
         addToWishlistPage.addBookToWishlist("laurentiu.solomon@btrl.ro", "Solanj78");
 
+        String emailValue = "laurentiu.solomon@btrl.ro";
+        String passwordValue = "Solanj78";
+
     }
 }
