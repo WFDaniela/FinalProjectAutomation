@@ -26,9 +26,11 @@ public class ShareData {
     }
 
 
+
+
     @AfterMethod
     public void Clear(){
-        driver.quit();
+        //driver.quit();
     }
 
 

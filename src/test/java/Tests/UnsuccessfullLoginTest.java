@@ -1,6 +1,8 @@
 package Tests;
 
 import HelpMethods.ElementMethods;
+import Pages.IndexPage;
+import Pages.UnsuccessfullLoginPage;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,25 +13,13 @@ public class UnsuccessfullLoginTest extends ShareData {
     @Test
     public void loginUnsuccessfull(){
 
-        ElementMethods elementMethods = new ElementMethods(getDriver());
+        IndexPage indexPage = new IndexPage(getDriver());
+        indexPage.clickConnect();
 
-        WebElement connect = getDriver().findElement(By.className("link-border"));
-        elementMethods.clickElement(connect);
+        UnsuccessfullLoginPage unsuccessfullLoginPage = new UnsuccessfullLoginPage(getDriver());
+        unsuccessfullLoginPage.loginFailed("daniela.solo@email.ro", "Daniela81","Email sau parola incorecte!" );
 
-        WebElement email = getDriver().findElement(By.id("username"));
-        String emailValue = "daniela.solo@email.ro";
-        elementMethods.fillElement(email, emailValue);
 
-        WebElement password = getDriver().findElement(By.id("password"));
-        String passwordValue = "Daniela81";
-        elementMethods.fillElement(password, passwordValue);
-
-        WebElement login = getDriver().findElement(By.className("submit-button"));
-        elementMethods.clickElement(login);
-
-        WebElement error = getDriver().findElement(By.className("login-error-message"));
-        String expectedError = "Email sau parola incorecte!";
-        elementMethods.validateMessage(error, expectedError);
 
     }
 }
