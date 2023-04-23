@@ -16,9 +16,11 @@ public class SuccessfulLoginTest extends Hooks {
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
+        testReport.attachReport("pass", "I clicked on Connect button");
 
         SuccessfulLoginPage successfulLoginPage = new SuccessfulLoginPage(getDriver());
         successfulLoginPage.loginValid(successfullLoginObject);
+        testReport.attachReport("pass", "I manage to login");
 
 
     }

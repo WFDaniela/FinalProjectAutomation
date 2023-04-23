@@ -14,9 +14,11 @@ public class WishlistAddProductTest extends Hooks {
         WishlistAddProductObject wishlistAddProductObject = new WishlistAddProductObject(TestData);
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
+        testReport.attachReport("pass", "I clicked on Connect button");
 
         AddToWishlistPage addToWishlistPage = new AddToWishlistPage(getDriver());
         addToWishlistPage.addBookToWishlist(wishlistAddProductObject);
+        testReport.attachReport("pass", "A new book was added in wishlist");
 
 
     }

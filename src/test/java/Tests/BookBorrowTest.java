@@ -16,9 +16,11 @@ public class BookBorrowTest extends Hooks {
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
+        testReport.attachReport("pass", "I clicked on Connect button");
 
         BookBorrowPage bookBorrowPage = new BookBorrowPage(getDriver());
         bookBorrowPage.borrowBook(bookBorrowObject);
+        testReport.attachReport("pass", "A new book was borrowed");
 
 
 

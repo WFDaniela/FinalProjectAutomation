@@ -14,9 +14,11 @@ public class BorrowCanceledTest extends Hooks {
         BorrowCanceledObject borrowCanceledObject = new BorrowCanceledObject(TestData);
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
+        testReport.attachReport("pass", "I clicked on Connect button");
 
         BorrowCanceledPage borrowCanceledPage = new BorrowCanceledPage(getDriver());
         borrowCanceledPage.cancelBookBorrow(borrowCanceledObject);
+        testReport.attachReport("pass", "Borrow canceled!");
 
 
 

@@ -14,9 +14,11 @@ public class UnsuccessfulLoginTest extends Hooks {
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickConnect();
+        testReport.attachReport("pass", "I clicked on Connect button");
 
         UnsuccessfullLoginPage unsuccessfullLoginPage = new UnsuccessfullLoginPage(getDriver());
         unsuccessfullLoginPage.loginFailed(unsuccessfulLoginObject);
+        testReport.attachReport("pass", "I manage to validate invalid login");
 
 
     }
